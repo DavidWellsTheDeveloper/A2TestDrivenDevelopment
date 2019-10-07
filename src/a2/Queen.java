@@ -1,0 +1,31 @@
+/**
+ * 
+ */
+package a2;
+
+import java.util.ArrayList;
+
+/**
+ * @author dave
+ *
+ */
+public class Queen extends ChessPiece {
+
+	public Queen(ChessBoard board, Color color) {
+		super(board, color);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<String> legalMoves() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
