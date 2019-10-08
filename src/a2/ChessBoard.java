@@ -3,20 +3,55 @@
  */
 package a2;
 
+import a2.ChessPiece.Color;
+
 /**
  * @author Dave Wells
  */
 public class ChessBoard {
 	private ChessPiece[][] board;
 	
-	
+	ChessBoard() {
+		this.board = new ChessPiece[8][8];
+//		iterate rows
+		for (int i = 0; i < 8; i++) {
+//			iterate columns
+			for (int j = 0; j < 8; j++) {
+				this.board[i][j] = null;
+			}
+		}
+	}
 	
 	public void initialize() {
+		for(int i = 0; i < 8; i++) {
+			this.board[1][i] = new Pawn(this, Color.WHITE);
+			this.board[6][i] = new Pawn(this, Color.BLACK);
+		}
+		this.board[0][0] = new Rook(this, Color.WHITE);
+		this.board[0][7] = new Rook(this, Color.WHITE);
+		this.board[7][0] = new Rook(this, Color.BLACK);
+		this.board[7][7] = new Rook(this, Color.BLACK);
 		
+		this.board[0][1] = new Knight(this, Color.WHITE);
+		this.board[0][6] = new Knight(this, Color.WHITE);
+		this.board[7][1] = new Knight(this, Color.BLACK);
+		this.board[7][6] = new Knight(this, Color.BLACK);
+		
+		this.board[0][2] = new Bishop(this, Color.WHITE);
+		this.board[0][5] = new Bishop(this, Color.WHITE);
+		this.board[7][2] = new Bishop(this, Color.BLACK);
+		this.board[7][5] = new Bishop(this, Color.BLACK);
+		
+		this.board[0][3] = new Queen(this, Color.WHITE);
+		this.board[7][3] = new Queen(this, Color.BLACK);
+		this.board[0][4] = new Queen(this, Color.WHITE);
+		this.board[7][4] = new Queen(this, Color.BLACK);
 	}
 	
 	public ChessPiece getPiece(String position) throws IllegalPositionException {
-		return null;
+		int row = Integer.parseInt(position.substring(1, 1));
+		int column = 0;
+		return board[row][column];
 	}
 	
 	public boolean placePiece(ChessPiece piece, String position) {

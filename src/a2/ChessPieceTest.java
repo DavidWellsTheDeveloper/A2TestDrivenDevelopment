@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import a2.ChessPiece.Color;
+
 /**
  * @author Dave Wells
  */
@@ -20,8 +22,13 @@ class ChessPieceTest {
 	}
 
 	@Test
-	void testGetColor() {
-		fail("Not yet implemented");
+	void testGetColor() throws IllegalPositionException {
+		ChessBoard chessBoard = new ChessBoard();
+		chessBoard.initialize();
+		ChessPiece chessPiece = chessBoard.getPiece("b1");
+		assertEquals(chessPiece.color, Color.WHITE);
+		chessPiece = chessBoard.getPiece("f8");
+		assertEquals(chessPiece.color, Color.BLACK);
 	}
 
 	@Test
