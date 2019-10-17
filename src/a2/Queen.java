@@ -5,8 +5,6 @@ package a2;
 
 import java.util.ArrayList;
 
-import a2.ChessPiece.Color;
-
 /**
  * @author dave
  *

@@ -79,7 +79,6 @@ public class ChessBoard {
 			throw new IllegalPositionException();
 		}
 		
-		String file = position.substring(0,1);
 		int column = fileToColumn(position.substring(0, 1));
 		if (row < 0 || row > 7) {
 			throw new IllegalPositionException();
@@ -106,19 +105,19 @@ public class ChessBoard {
 		}
 	}
 	
-	private String columnToFile(int i) throws IllegalPositionException {
-		switch(i) {
-			case 0: return "a";
-			case 1: return "b";
-			case 2: return "c";
-			case 3: return "d";
-			case 4: return "e";
-			case 5: return "f";
-			case 6: return "g";
-			case 7: return "h";
-			default: throw new IllegalPositionException();
-		}
-	}
+//	private String columnToFile(int i) throws IllegalPositionException {
+//		switch(i) {
+//			case 0: return "a";
+//			case 1: return "b";
+//			case 2: return "c";
+//			case 3: return "d";
+//			case 4: return "e";
+//			case 5: return "f";
+//			case 6: return "g";
+//			case 7: return "h";
+//			default: throw new IllegalPositionException();
+//		}
+//	}
 	
 	public String toString(){
 	    String chess="";

@@ -2,8 +2,6 @@ package a2;
 
 import java.util.ArrayList;
 
-import a2.ChessPiece.Color;
-
 /**
  * @author dave
  *
@@ -12,7 +10,6 @@ public class Bishop extends ChessPiece {
 
 	public Bishop(ChessBoard board, Color color) {
 		super(board, color);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -25,43 +25,18 @@ public abstract class ChessPiece {
 		return color;
 	}
 	
-	public String getPosition() {
-		String file = null;
+	public String getPosition() throws IllegalPositionException {
 		switch (column) {
-			case 0: {
-				file = "a";
-				break;
-			}
-			case 1: {
-				file = "b";
-				break;
-			}
-			case 2: {
-				file = "c";
-				break;
-			}
-			case 3: {
-				file = "d";
-				break;
-			}
-			case 4: {
-				file = "e";
-				break;
-			}
-			case 5: {
-				file = "f";
-				break;
-			}
-			case 6: {
-				file = "g";
-				break;
-			}
-			case 7: {
-				file = "h";
-				break;
-			}
+			case 0: return "a" + Integer.toString(row);
+			case 1: return "b" + Integer.toString(row);
+			case 2: return "c" + Integer.toString(row);
+			case 3: return "d" + Integer.toString(row);
+			case 4: return "e" + Integer.toString(row);
+			case 5: return "f" + Integer.toString(row);
+			case 6: return "g" + Integer.toString(row);
+			case 7: return "h" + Integer.toString(row);
+			default: throw new IllegalPositionException();
 		}
-		return file + Integer.toString(row);
 	}
 	
 	public void setPosition(String position) throws IllegalPositionException {
