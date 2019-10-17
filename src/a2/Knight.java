@@ -2,6 +2,8 @@ package a2;
 
 import java.util.ArrayList;
 
+import a2.ChessPiece.Color;
+
 /**
  * @author dave
  *
@@ -15,8 +17,11 @@ public class Knight extends ChessPiece {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		String unicode =  "";
+		if (this.color == Color.WHITE)
+			return unicode + '\u2658';
+		else 
+			return unicode + '\u265E';
 	}
 
 	@Override

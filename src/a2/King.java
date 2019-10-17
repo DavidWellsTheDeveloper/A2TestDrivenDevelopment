@@ -18,8 +18,11 @@ public class King extends ChessPiece {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		String unicode =  "";
+		if (this.color == Color.WHITE)
+			return unicode + '\u2654';
+		else 
+			return unicode + '\u265A';
 	}
 
 	@Override

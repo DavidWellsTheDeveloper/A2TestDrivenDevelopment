@@ -32,8 +32,11 @@ class ChessPieceTest {
 	}
 
 	@Test
-	void testGetPosition() {
-		fail("Not yet implemented");
+	void testGetPosition() throws IllegalPositionException {
+		ChessBoard chessBoard = new ChessBoard();
+		Rook chessPiece = new Rook(chessBoard, Color.WHITE);
+		assert (chessBoard.placePiece(chessPiece, "a1"));
+		assertEquals(chessPiece.getPosition(), "a1");
 	}
 
 	@Test

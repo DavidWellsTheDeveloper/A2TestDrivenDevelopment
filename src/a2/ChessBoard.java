@@ -14,48 +14,110 @@ public class ChessBoard {
 	ChessBoard() {
 		this.board = new ChessPiece[8][8];
 //		iterate rows
-		for (int i = 0; i < 8; i++) {
-//			iterate columns
-			for (int j = 0; j < 8; j++) {
-				this.board[i][j] = null;
-			}
-		}
+//		for (int i = 0; i < 8; i++) {
+////			iterate columns
+//			for (int j = 0; j < 8; j++) {
+//				this.board[i][j] = null;
+//			}
+//		}
 	}
 	
-	public void initialize() {
-		for(int i = 0; i < 8; i++) {
-			this.board[1][i] = new Pawn(this, Color.WHITE);
-			this.board[6][i] = new Pawn(this, Color.BLACK);
-		}
-		this.board[0][0] = new Rook(this, Color.WHITE);
-		this.board[0][7] = new Rook(this, Color.WHITE);
-		this.board[7][0] = new Rook(this, Color.BLACK);
-		this.board[7][7] = new Rook(this, Color.BLACK);
+	public void initialize() throws IllegalPositionException {
 		
-		this.board[0][1] = new Knight(this, Color.WHITE);
-		this.board[0][6] = new Knight(this, Color.WHITE);
-		this.board[7][1] = new Knight(this, Color.BLACK);
-		this.board[7][6] = new Knight(this, Color.BLACK);
+		this.placePiece(new Pawn(this, Color.WHITE), "a2");
+		this.placePiece(new Pawn(this, Color.WHITE), "b2");
+		this.placePiece(new Pawn(this, Color.WHITE), "c2");
+		this.placePiece(new Pawn(this, Color.WHITE), "d2");
+		this.placePiece(new Pawn(this, Color.WHITE), "e2");
+		this.placePiece(new Pawn(this, Color.WHITE), "f2");
+		this.placePiece(new Pawn(this, Color.WHITE), "g2");
+		this.placePiece(new Pawn(this, Color.WHITE), "h2");
+		this.placePiece(new Pawn(this, Color.BLACK), "a7");
+		this.placePiece(new Pawn(this, Color.BLACK), "b7");
+		this.placePiece(new Pawn(this, Color.BLACK), "c7");
+		this.placePiece(new Pawn(this, Color.BLACK), "d7");
+		this.placePiece(new Pawn(this, Color.BLACK), "e7");
+		this.placePiece(new Pawn(this, Color.BLACK), "f7");
+		this.placePiece(new Pawn(this, Color.BLACK), "g7");
+		this.placePiece(new Pawn(this, Color.BLACK), "h7");
 		
-		this.board[0][2] = new Bishop(this, Color.WHITE);
-		this.board[0][5] = new Bishop(this, Color.WHITE);
-		this.board[7][2] = new Bishop(this, Color.BLACK);
-		this.board[7][5] = new Bishop(this, Color.BLACK);
+		this.placePiece(new Rook(this, Color.WHITE), "a1");
+		this.placePiece(new Rook(this, Color.WHITE), "h1");
+		this.placePiece(new Rook(this, Color.BLACK), "a8");
+		this.placePiece(new Rook(this, Color.BLACK), "h8");
 		
-		this.board[0][3] = new Queen(this, Color.WHITE);
-		this.board[7][3] = new Queen(this, Color.BLACK);
-		this.board[0][4] = new Queen(this, Color.WHITE);
-		this.board[7][4] = new Queen(this, Color.BLACK);
+		this.placePiece(new Knight(this, Color.WHITE), "b1");
+		this.placePiece(new Knight(this, Color.WHITE), "g1");
+		this.placePiece(new Knight(this, Color.BLACK), "b8");
+		this.placePiece(new Knight(this, Color.BLACK), "g8");
+		
+		this.placePiece(new Bishop(this, Color.WHITE), "c1");
+		this.placePiece(new Bishop(this, Color.WHITE), "f1");
+		this.placePiece(new Bishop(this, Color.BLACK), "c8");
+		this.placePiece(new Bishop(this, Color.BLACK), "f8");
+		
+		this.placePiece(new Queen(this, Color.WHITE), "d1");
+		this.placePiece(new King(this, Color.WHITE), "e1");
+		this.placePiece(new Queen(this, Color.BLACK), "d8");
+		this.placePiece(new King(this, Color.BLACK), "e8");
 	}
 	
+	
+
 	public ChessPiece getPiece(String position) throws IllegalPositionException {
-		int row = Integer.parseInt(position.substring(1, 1));
-		int column = 0;
+		int row = Integer.parseInt(position.substring(1));
+		int column = fileToColumn(position.substring(0, 1));
 		return board[row][column];
 	}
 	
-	public boolean placePiece(ChessPiece piece, String position) {
-		return false;
+	public boolean placePiece(ChessPiece piece, String position) throws IllegalPositionException {
+		int row;
+		try {
+			row = Integer.parseInt(position.substring(1))-1;
+		}
+		catch (Exception ex) {
+			throw new IllegalPositionException();
+		}
+		
+		String file = position.substring(0,1);
+		int column = fileToColumn(position.substring(0, 1));
+		if (row < 0 || row > 7) {
+			throw new IllegalPositionException();
+		}
+		this.board[row][column] = piece;
+		return true;
+	}
+	
+	public void move(String fromPosition, String position) {
+		
+	}
+	
+	private int fileToColumn(String file) throws IllegalPositionException {
+		switch(file) {
+			case "a": return 0;
+			case "b": return 1;
+			case "c": return 2;
+			case "d": return 3;
+			case "e": return 4;
+			case "f": return 5;
+			case "g": return 6;
+			case "h": return 7;
+			default : throw new IllegalPositionException();
+		}
+	}
+	
+	private String columnToFile(int i) throws IllegalPositionException {
+		switch(i) {
+			case 0: return "a";
+			case 1: return "b";
+			case 2: return "c";
+			case 3: return "d";
+			case 4: return "e";
+			case 5: return "f";
+			case 6: return "g";
+			case 7: return "h";
+			default: throw new IllegalPositionException();
+		}
 	}
 	
 	public String toString(){
@@ -107,4 +169,17 @@ public class ChessBoard {
 	    chess+=bottomLine;
 	    return chess;
 	}
+
+public static void main(String[] args) {
+	ChessBoard board = new ChessBoard();
+	try {
+		board.initialize();
+	} catch (IllegalPositionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	System.out.println(board);
+//	board.move("c2", "c4");
+//	System.out.println(board);
+}
 }
