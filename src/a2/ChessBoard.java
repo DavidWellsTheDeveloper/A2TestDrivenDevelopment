@@ -65,7 +65,7 @@ public class ChessBoard {
 	
 
 	public ChessPiece getPiece(String position) throws IllegalPositionException {
-		int row = Integer.parseInt(position.substring(1));
+		int row = Integer.parseInt(position.substring(1)) - 1;
 		int column = fileToColumn(position.substring(0, 1));
 		return board[row][column];
 	}
@@ -84,11 +84,22 @@ public class ChessBoard {
 			throw new IllegalPositionException();
 		}
 		this.board[row][column] = piece;
+		if (piece != null) {
+			piece.setPosition(position);
+		}
+		
 		return true;
 	}
 	
-	public void move(String fromPosition, String position) {
-		
+	public void move(String fromPosition, String position) throws IllegalPositionException {
+		ChessPiece fromPiece = getPiece(fromPosition);
+//		if move is legal, lets place the piece
+		if (fromPiece.legalMoves().contains(position)) {
+			placePiece(fromPiece, position);
+			fromPiece = null;
+			placePiece(fromPiece, fromPosition);
+			
+		}
 	}
 	
 	private int fileToColumn(String file) throws IllegalPositionException {
@@ -173,12 +184,19 @@ public static void main(String[] args) {
 	ChessBoard board = new ChessBoard();
 	try {
 		board.initialize();
+		System.out.println(board);
+		board.move("c7", "c5");
+		System.out.println(board);
+		board.move("d2", "d4");
+		System.out.println(board);
+		board.move("c5", "d4");
+		System.out.println(board);
+		board.move("e1", "d2");
+		
 	} catch (IllegalPositionException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	System.out.println(board);
-//	board.move("c2", "c4");
-//	System.out.println(board);
 }
 }
