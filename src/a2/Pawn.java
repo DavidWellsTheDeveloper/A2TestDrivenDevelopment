@@ -71,16 +71,23 @@ public class Pawn extends ChessPiece {
 				if (row == 2 && forward2 == null) {
 					moves.add(column + Integer.toString(row + 2));
 				}
-				String attackLeftPosition = getFileFromColumn(getColumnFromPosition(position)-1) + Integer.toString(row + 1);
-				boolean leftAttack = (this.board.getPiece(attackLeftPosition) != null) && (this.board.getPiece(attackLeftPosition).color != this.color);
-				String attackRightPosition = getFileFromColumn(getColumnFromPosition(position)+1) + Integer.toString(row + 1);
-				boolean rightAttack = (this.board.getPiece(attackRightPosition) != null) && (this.board.getPiece(attackLeftPosition).color != this.color);
-				if (rightAttack) {
-					moves.add(attackRightPosition);
+				if (getColumnFromPosition(position) > 0) {
+					String attackLeftPosition = getFileFromColumn(getColumnFromPosition(position)-1) + Integer.toString(row + 1);
+					boolean leftAttack = (this.board.getPiece(attackLeftPosition) != null) && (this.board.getPiece(attackLeftPosition).color != this.color);
+					if (leftAttack) {
+						moves.add(attackLeftPosition);
+					}
 				}
-				if (leftAttack) {
-					moves.add(attackLeftPosition);
+				if (getColumnFromPosition(position) < 7) {
+					String attackRightPosition = getFileFromColumn(getColumnFromPosition(position)+1) + Integer.toString(row + 1);
+					boolean rightAttack = (this.board.getPiece(attackRightPosition) != null) && (this.board.getPiece(attackRightPosition).color != this.color);
+					if (rightAttack) {
+						moves.add(attackRightPosition);
+					}
 				}
+				
+				
+				
 			}
 			if (this.color == Color.BLACK) {
 				forward1 = this.board.getPiece(column + Integer.toString(row - 1));

@@ -25,7 +25,7 @@ public abstract class ChessPiece {
 		return color;
 	}
 	
-	public String getPosition() throws IllegalPositionException {
+	public String getPosition() {
 		switch (column) {
 			case 0: return "a" + Integer.toString(row + 1);
 			case 1: return "b" + Integer.toString(row + 1);
@@ -35,7 +35,7 @@ public abstract class ChessPiece {
 			case 5: return "f" + Integer.toString(row + 1);
 			case 6: return "g" + Integer.toString(row + 1);
 			case 7: return "h" + Integer.toString(row + 1);
-			default: throw new IllegalPositionException();
+			default: return null;
 		}
 	}
 	

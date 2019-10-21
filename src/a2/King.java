@@ -70,39 +70,46 @@ public class King extends ChessPiece {
 				ChessPiece forwardRight = null;
 				ChessPiece right = null;
 				ChessPiece backRight = null;
+				
 				if (row > 1) {
 					back = this.board.getPiece(column + Integer.toString(row - 1));
-					moves.add(back.getPosition());
+					if (back == null || back.color != this.color)
+						moves.add(column + Integer.toString(row - 1));
 				}
 				if (row > 1 && column != "a") { 
 					backLeft= this.board.getPiece(getFileFromColumn(getColumnFromPosition(position)-1) + Integer.toString(row - 1));
-					moves.add(backLeft.getPosition());
+					if (backLeft == null || backLeft.color != this.color)
+						moves.add(getFileFromColumn(getColumnFromPosition(position)-1) + Integer.toString(row - 1));
 				}	
 				if (column != "a") {
 					left = this.board.getPiece(getFileFromColumn(getColumnFromPosition(position)-1) + Integer.toString(row));
-					moves.add(left.getPosition());
+					if (left == null || left.color != this.color)
+						moves.add(getFileFromColumn(getColumnFromPosition(position)-1) + Integer.toString(row));
 				}
 				if (row < 8 && column != "a") {
-					String option = getFileFromColumn(getColumnFromPosition(position)-1) + Integer.toString(row + 1);
-					forwardLeft = this.board.getPiece(option);
-					moves.add(option);
+					forwardLeft = this.board.getPiece(getFileFromColumn(getColumnFromPosition(position)-1) + Integer.toString(row + 1));
+					if (forwardLeft == null || forwardLeft.color != this.color)
+						moves.add(getFileFromColumn(getColumnFromPosition(position)-1) + Integer.toString(row + 1));
 				}
 				if (row < 8) {
-					String option = column + Integer.toString(row + 1);
-					forward = this.board.getPiece(option);
-					moves.add(option);
+					forward = this.board.getPiece(column + Integer.toString(row + 1));
+					if (forward == null || forward.color != this.color)
+						moves.add(column + Integer.toString(row + 1));
 				}
 				if (row < 8 && column != "h") {
 					forwardRight = this.board.getPiece(getFileFromColumn(getColumnFromPosition(position)+1) + Integer.toString(row + 1));
-					moves.add(forwardRight.getPosition());
+					if (forwardRight == null || forwardRight.color != this.color)
+						moves.add(getFileFromColumn(getColumnFromPosition(position)+1) + Integer.toString(row + 1));
 				}
 				if (column != "h") {
 					right = this.board.getPiece(getFileFromColumn(getColumnFromPosition(position)+1) + Integer.toString(row));
-					moves.add(right.getPosition());
+					if (right == null || right.color != this.color)
+						moves.add(getFileFromColumn(getColumnFromPosition(position)+1) + Integer.toString(row));
 				}
 				if (row > 1 && column != "h") {
 					backRight = this.board.getPiece(getFileFromColumn(getColumnFromPosition(position)+1) + Integer.toString(row - 1));
-					moves.add(backRight.getPosition());
+					if (backRight == null || backRight.color != this.color)
+						moves.add(getFileFromColumn(getColumnFromPosition(position)+1) + Integer.toString(row - 1));
 				}
 			}
 		} catch (IllegalPositionException e) {

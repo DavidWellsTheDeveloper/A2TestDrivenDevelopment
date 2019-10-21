@@ -98,7 +98,9 @@ public class ChessBoard {
 			placePiece(fromPiece, position);
 			fromPiece = null;
 			placePiece(fromPiece, fromPosition);
-			
+		}
+		else {
+			throw new IllegalPositionException();
 		}
 	}
 	
@@ -180,23 +182,26 @@ public class ChessBoard {
 	    return chess;
 	}
 
-public static void main(String[] args) {
-	ChessBoard board = new ChessBoard();
-	try {
-		board.initialize();
-		System.out.println(board);
-		board.move("c7", "c5");
-		System.out.println(board);
-		board.move("d2", "d4");
-		System.out.println(board);
-		board.move("c5", "d4");
-		System.out.println(board);
-		board.move("e1", "d2");
-		
-	} catch (IllegalPositionException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	public static void main(String[] args) {
+		ChessBoard board = new ChessBoard();
+		try {
+			board.initialize();
+			System.out.println(board);
+			board.move("b2", "b3");
+			System.out.println(board);
+			board.move("c1", "a3");
+			System.out.println(board);
+			board.move("a3", "b4");
+			System.out.println(board);
+			board.move("b4", "a3");
+			System.out.println(board);
+			board.move("a3", "b2");
+			System.out.println(board);
+			
+			
+		} catch (IllegalPositionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	System.out.println(board);
-}
 }
